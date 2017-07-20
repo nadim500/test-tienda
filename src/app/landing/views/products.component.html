@@ -184,12 +184,14 @@
 
       <div class="col-md-9" *ngIf="!cargando">
         <div class="masonry row" *ngIf="productos.length !== 0">
-          <products-product *ngFor="let product of productos | paginate: { itemsPerPage: 9, currentPage: p }" [product]="product"></products-product>
+          <!-- <products-product *ngFor="let product of productos | paginate: { itemsPerPage: 9, currentPage: p }" [product]="product"></products-product> -->
+           <products-product *ngFor="let product of productos" [product]="product"></products-product>
           <!-- /.masonry -->
         </div>
         <div class="masonry row" *ngIf="productos.length !== 0">
           <div class="clearfix text-center">
-            <pagination-controls class="custom" previousLabel="" nextLabel="" (pageChange)="changePag($event)"></pagination-controls>
+            <!-- <pagination-controls class="custom" previousLabel="" nextLabel="" (pageChange)="changePag($event)"></pagination-controls> -->
+            <div class="pagination">Paginas</div>
           </div>
         </div>
         <div class="masonry row" *ngIf="productos.length === 0">

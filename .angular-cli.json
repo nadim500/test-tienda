@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ang4-seo"
+    "name": "tienda-sam"
   },
   "apps": [
     {
@@ -19,9 +19,13 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
+        "assets/build/css/min.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/build/js/jquery.min.js",
+        "assets/build/js/bootstrap.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

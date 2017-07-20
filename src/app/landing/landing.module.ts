@@ -19,16 +19,16 @@ import { ProductsProductComponent } from './components/products-product.componen
 
 import { LandingRoutingModule } from './landing.routing';
 
-import { ShareButtonsModule } from 'ngx-sharebuttons';
-import { NgxPaginationModule } from 'ngx-pagination';
+/* import { ShareButtonsModule } from 'ngx-sharebuttons';
+import { NgxPaginationModule } from 'ngx-pagination'; */
 import { Reusables } from '../reusables/reusables';
 
 @NgModule({
   imports: [
     CommonModule,
     LandingRoutingModule,
-    ShareButtonsModule.forRoot(),
-    NgxPaginationModule,
+    /* ShareButtonsModule.forRoot(),
+    NgxPaginationModule, */
     ReactiveFormsModule,
     FormsModule,
     Reusables
