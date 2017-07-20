@@ -1,0 +1,106 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Home</a></li>
+          <li class="active">Registrar</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="content-cargando" *ngIf="cargando">
+  <div class="cargando"></div>
+  <div class="info">
+    Se esta creando su cuenta <span class="typed-cursor">...</span>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <section class="section" id="page-login">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="box">
+            <h2>Registrar</h2><br>
+            <div class="success-create" *ngIf="visible">Su cuenta fue creada con exito, ingrese <span class="typed-cursor"><a class="pointer" routerLink="/login">aquí</a></span>              </div>
+            <div class="error-create typed-cursor" *ngIf="visibleError" >Tenemos problemas en el servidor, intentelo otra vez.</div>
+            <form [formGroup]="formCreate" (ngSubmit)="submit()" class="register-form inputs-border inputs-bg">
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (username.hasError('required') || username.hasError('invalidAsync')) && username.touched }"
+                    [formControl]="username" placeholder="Username">
+                  <div class="error-custom" *ngIf="username.hasError('required') && username.touched">*Este campo es requerido</div>
+                  <div class="error-custom" *ngIf="username.hasError('invalidAsync') && username.touched">*Este username ya esta registrado</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="email" class="form-control" [ngClass]="{'error-custom-input': (email.hasError('required') || email.hasError('invalidEmail') || email.hasError('invalidAsync')) && email.touched }"
+                    [formControl]="email" placeholder="Dirección de email">
+                  <div class="error-custom" *ngIf="email.hasError('required') && email.touched">*Este campo es requerido</div>
+                  <div class="error-custom" *ngIf="email.hasError('invalidEmail') && email.touched">*El correo es inválido</div>
+                  <div class="error-custom" *ngIf="email.hasError('invalidAsync') && email.touched">*Este correo ya esta registrado</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (firstName.hasError('required')) && firstName.touched }"
+                    [formControl]="firstName" placeholder="Nombres">
+                  <div class="error-custom" *ngIf="firstName.hasError('required') && firstName.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (lastName.hasError('required')) && lastName.touched }"
+                    [formControl]="lastName" placeholder="Apellidos">
+                  <div class="error-custom" *ngIf="lastName.hasError('required') && lastName.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (phone.hasError('required')) && phone.touched }"
+                    [formControl]="phone" placeholder="Teléfono/Celular">
+                  <div class="error-custom" *ngIf="phone.hasError('required') && phone.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="password" class="form-control" [ngClass]="{'error-custom-input': (password.hasError('required')) && password.touched }"
+                    [formControl]="password" placeholder="Contraseña">
+                  <div class="error-custom" *ngIf="password.hasError('required') && password.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="password" class="form-control" [ngClass]="{'error-custom-input': (repeatPwd.hasError('required') || formCreate.hasError('mismatchedPasswords') ) && repeatPwd.touched }"
+                    [formControl]="repeatPwd" placeholder="Repita su contraseña">
+                  <div class="error-custom" *ngIf="repeatPwd.hasError('required') && repeatPwd.touched">*Este campo es requerido</div>
+                  <div class="error-custom" *ngIf="(formCreate.hasError('mismatchedPasswords') && !repeatPwd.hasError('required') ) && repeatPwd.touched">*Las contraseñas no concuerdan</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" id="rememberme">
+                <label for="rememberme" class="checkbox" style="visibility: hidden;">Remember me</label>
+                <a routerLink="/login" (click)="scroll()" class="effect pull-right">Ya tienes cuenta, ingresa</a>
+              </div>
+              <div class="form-group text-right">
+                <button type="submit" [disabled]="!formCreate.valid" class="btn btn-default">Registrar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-login -->
+</div>
+<!-- /.page-wrapper -->

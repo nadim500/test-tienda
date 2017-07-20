@@ -1,0 +1,396 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li class="active">Caja</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="content-cargando" *ngIf="cargando">
+  <div class="cargando"></div>
+  <div class="info">
+    Procesando compra <span class="typed-cursor">...</span>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <section class="section" id="page-checkout">
+    <div class="container">
+      <div class="row">
+        <!--<div class="col-sm-6">
+          <div class="alert alert-info">
+            <strong>Returning customer?</strong> <a href="#!" class="effect" data-slide-toggle=".checkout-login-form">Click here to login</a>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="alert alert-info">
+            <strong>Have a coupon?</strong> <a href="#!" class="effect" data-slide-toggle=".checkout-coupon-form">Click here to enter your code</a>
+          </div>
+        </div>-->
+
+        <!--<div class="col-sm-6">
+          <div class="checkout-login-form box" style="display: none;">
+            <h2>Login</h2>
+            <p>
+              If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed
+              to the Billing &amp; Shipping section.
+            </p>
+            <div action="#!" method="POST" class="login-form inputs-border inputs-bg">
+              <div class="form-group">
+                <label for="username">Username or email*</label>
+                <input type="text" id="username" class="form-control" placeholder="Username or email*">
+              </div>
+              <div class="form-group">
+                <label for="password">Password*</label>
+                <input type="password" id="password" class="form-control" placeholder="Password*">
+              </div>
+              <div class="form-group">
+                <input type="checkbox" id="rememberme">
+                <label for="rememberme" class="checkbox">Remember me</label>
+                <a href="#!" class="effect pull-right">Forgot your password?</a>
+              </div>
+              <div class="form-group text-right">
+                <button type="button" class="btn btn-default">Login</button>
+              </div>
+            </div>
+          </div>
+        </div>-->
+
+        <!--<div class="col-sm-6">
+          <div class="checkout-coupon-form box" style="display: none;">
+            <div action="#!" method="POST" class="coupon-form inputs-border inputs-bg">
+              <div class="form-group">
+                <label for="coupon_code">Coupon code</label>
+                <input type="text" id="coupon_code" class="form-control" placeholder="Coupon code">
+              </div>
+              <div class="form-group text-right">
+                <button type="button" class="btn btn-default">Apply Coupon</button>
+              </div>
+            </div>
+          </div>
+        </div>-->
+
+        <div class="clearfix"></div>
+
+        <form class="checkout-form inputs-border inputs-bg" [formGroup]="formCreate" (ngSubmit)="submit()">
+          <div class="col-md-6">
+            <div class="billing-field">
+              <h3 class="title">Detalles de Facturación</h3>
+
+              <div class="title error-h3 typed-cursor" *ngIf="invalid">{{textError}}</div>
+
+              <!--<div class="row">
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="text" class="form-control" placeholder="First Name" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="text" class="form-control" placeholder="Last Name" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <input type="text" class="form-control" placeholder="Company Name">
+              </div>
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="email" class="form-control" placeholder="Email Address" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="tel" class="form-control" placeholder="Phone" required>
+                  </div>
+                </div>
+              </div>-->
+
+              <!--<div class="form-group">
+                <div class="required">
+                  <select class="form-control">
+	                        				<option>Select a Country..</option>
+	                        				<option value="SY">Syria</option>
+	                        				<option value="UK">United Kingdom</option>
+	                        				<option value="US">United States</option>
+	                        				<option value="TR">Turkey</option>
+	                                    </select>
+                </div>
+              </div>-->
+
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (country.hasError('required')) && country.touched }"
+                    [formControl]="country" placeholder="País" required>
+                  <div class="error-custom" *ngIf="country.hasError('required') && country.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="text" class="form-control" [ngClass]="{'error-custom-input': (city.hasError('required')) && city.touched }"
+                      [formControl]="city" placeholder="Ciudad" required>
+                    <div class="error-custom" *ngIf="city.hasError('required') && city.touched">*Este campo es requerido</div>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="text" class="form-control" [ngClass]="{'error-custom-input': (district.hasError('required')) && district.touched }"
+                      [formControl]="district" placeholder="Distrito">
+                    <div class="error-custom" *ngIf="district.hasError('required') && district.touched">*Este campo es requerido</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (address.hasError('required')) && address.touched }"
+                    [formControl]="address" placeholder="Dirección" required>
+                  <div class="error-custom" *ngIf="address.hasError('required') && address.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (codigo.hasError('required')) && codigo.touched }"
+                    [formControl]="codigo" placeholder="Código Postal" required>
+                  <div class="error-custom" *ngIf="codigo.hasError('required') && codigo.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+
+              <!--<div class="row">
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <input type="text" class="form-control" placeholder="Town / City" required>
+                  </div>
+                </div>
+                <div class="form-group col-sm-6">
+                  <div class="required">
+                    <select class="form-control">
+		                        				<option>Select a Province..</option>
+		                        				<option value="SY">Syria</option>
+		                        				<option value="UK">United Kingdom</option>
+		                        				<option value="US">United States</option>
+		                        				<option value="TR">Turkey</option>
+		                                    </select>
+                  </div>
+                </div>
+              </div>-->
+
+              <!--<div class="form-group">
+                <input type="checkbox" id="create_account">
+                <label for="create_account" class="checkbox" data-slide-toggle=".create-account">Create an account?</label>
+                <div class="create-account box" style="display: none;">
+                  <p>
+                    Create an account by entering the information below. If you are a returning customer please login at the top of the page.
+                  </p>
+                  <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Account Password">
+                  </div>
+                </div>
+              </div>-->
+
+              <!--<div class="form-group">
+                <h3>
+                  <input type="checkbox" id="ship-different-address">
+                  <label for="ship-different-address" class="checkbox" data-slide-toggle=".different-address">Ship to a different address?</label>
+                </h3>
+                <div class="different-address box" style="display: none;">
+                  <div class="row">
+                    <div class="form-group col-sm-6">
+                      <div class="required">
+                        <input type="text" class="form-control" placeholder="First Name" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <div class="required">
+                        <input type="text" class="form-control" placeholder="Last Name" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Company Name">
+                  </div>
+
+                  <div class="form-group">
+                    <div class="required">
+                      <select class="form-control">
+			                        				<option>Select a Country..</option>
+			                        				<option value="SY">Syria</option>
+			                        				<option value="UK">United Kingdom</option>
+			                        				<option value="US">United States</option>
+			                        				<option value="TR">Turkey</option>
+			                                    </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-sm-6">
+                      <div class="required">
+                        <input type="text" class="form-control" placeholder="Address" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <input type="text" class="form-control" placeholder="Address 2">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="required">
+                      <input type="text" class="form-control" placeholder="Postcode / ZIP" required>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="form-group col-sm-6">
+                      <div class="required">
+                        <input type="text" class="form-control" placeholder="Town / City" required>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <div class="required">
+                        <select class="form-control">
+				                        				<option>Select a Province..</option>
+				                        				<option value="SY">Syria</option>
+				                        				<option value="UK">United Kingdom</option>
+				                        				<option value="US">United States</option>
+				                        				<option value="TR">Turkey</option>
+				                                    </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+
+              <div class="form-group">
+                <label>Notas</label>
+                <textarea class="form-control" [formControl]="note" placeholder="Alguna nota para tu pedido" rows="5"></textarea>
+              </div>
+            </div>
+            <!-- /.billing-field -->
+          </div>
+
+          <div class="col-md-6">
+            <div class="review-order">
+              <div class="box">
+                <h3 class="title">Su pedido</h3>
+                <div class="table-responsive">
+                  <table class="table cart-table review-order-table">
+                    <thead>
+                      <tr>
+                        <th class="product-name" width="50%">Producto</th>
+                        <th class="product-total">Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="item" *ngFor="let cart of cartProductos; let i = index">
+                        <td class="product-name">
+                          {{cart.name}} <strong class="product-quantity">× {{cart.cantidad}}</strong> </td>
+                        <td class="product-total">
+                          <span class="amount">S/{{(cart.priceNow*cart.cantidad) | fixedTwo}}</span>
+                        </td>
+                      </tr>
+                      <!--<tr class="item">
+                        <td class="product-name">
+                          Patterned Scarf <strong class="product-quantity">× 1</strong>
+                          <table class="variation">
+                            <tbody>
+                              <tr>
+                                <th class="variation-size">Size:</th>
+                                <td class="variation-size">
+                                  <p>Large</p>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                        <td class="product-total">
+                          <span class="amount">$450.00</span>
+                        </td>
+                      </tr>-->
+                    </tbody>
+                    <tfoot>
+                      <tr class="cart-subtotal">
+                        <th>Subtotal</th>
+                        <td><span class="amount">S/{{service.getTotal() | fixedTwo}}</span></td>
+                      </tr>
+                      <tr class="shipping">
+                        <th>Envio</th>
+                        <td>
+                          <p>Envio gratis</p>
+                        </td>
+                      </tr>
+                      <tr class="order-total">
+                        <th>Total</th>
+                        <td>
+                          <strong><span class="amount">S/{{service.getTotal() | fixedTwo}}</span></strong>
+                        </td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <!-- /.review-order-table -->
+                </div>
+
+                <h2>Metodo de Pago</h2>
+                <div id="payment" class="checkout-payment">
+                  <ul class="payment-methods">
+                    <!-- <li class="payment-method">
+                      <input id="payment_method_cheque" type="radio" name="payment_method">
+                      <label for="payment_method_cheque" class="radio" data-slide-toggle="#payment-cheque" data-parent=".payment-methods">Pagar con cheque</label>
+
+                      <div class="payment-box" id="payment-cheque" style="display:none;">
+                        <p>Envianos tu cheque al correo.</p>
+                      </div>
+                    </li> -->
+                    <li class="payment-method">
+                      <input id="payment_method_cod" type="radio" name="payment_method" checked="checked">
+                      <label for="payment_method_cod" class="radio" data-slide-toggle="#payment-cash" data-parent=".payment-methods">Contra Entrega</label>
+
+                      <div class="payment-box" id="payment-cash">
+                        <p>Pagar con efectivo a la hora de la entrega.</p>
+                      </div>
+                    </li>
+                    <!-- <li class="payment-method">
+                      <input id="payment_method_paypal" type="radio" name="payment_method">
+                      <label for="payment_method_paypal" class="radio" data-slide-toggle="#payment-paypal" data-parent=".payment-methods">PayPal</label>
+
+                      <div class="payment-box" id="payment-paypal" style="display:none;">
+                        <img src="https://www.paypalobjects.com/webstatic/mktg/Logo/AM_mc_vs_ms_ae_UK.png" class="img-responsive">
+                        <p><a href="#!" class="effect">Que es Paypal?</a></p>
+                        <p>Pago a través de PayPal; Puede pagar con su tarjeta de crédito si no tiene una cuenta de PayPal.</p>
+                      </div>
+                    </li> -->
+                  </ul>
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-default">Realizar pedido</button>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box -->
+            </div>
+            <!-- /.review-order -->
+          </div>
+        </form>
+        <!-- /.checkout-form -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-checkout -->
+</div>
+<!-- /.page-wrapper -->

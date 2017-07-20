@@ -1,0 +1,206 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Inicio</a></li>
+          <li class="active">Productos</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+<section class="section products-grid second-style">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="shop-sidebar shop-sidebar-left">
+          <div class="widgets">
+            <div class="widget widget-search">
+              <h3 class="widget-title">
+                Que está en tu mente
+                <span class="typed-cursor">?</span>
+              </h3>
+              <div class="inputs-border inputs-bg">
+                <input type="text" class="form-control" placeholder="Search Products.." #search>
+              </div>
+            </div>
+            <!-- /.widget-search -->
+
+            <!--<div class="widget widget-price-filter">
+              <h3 class="widget-title">Filter By Price</h3>
+              <div class="price-slider-wrapper">
+                <div id="filter-slider" class="filter-slider" data-min="10" data-max="1000" data-values="150,700"></div>
+              </div>
+              <form action="">
+                <div id="amount-slider">
+                  <strong>Price: </strong><span>$150 — $700</span>
+                </div>
+                <input type="hidden" id="price" value="150,700">
+                <button type="button" class="btn btn-default">Filter</button>
+              </form>
+            </div>-->
+            <!-- /.widget-price-filter -->
+
+            <!--<div class="widget widget-sizes">
+              <h3 class="widget-title">Sizes</h3>
+              <ul>
+                <li><a href="#!">XS</a></li>
+                <li><a href="#!">S</a></li>
+                <li><a href="#!">M</a></li>
+                <li><a href="#!">L</a></li>
+                <li><a href="#!">XL</a></li>
+              </ul>
+            </div>-->
+            <!-- /.widget-sizes -->
+
+            <div class="widget widget-categories">
+              <h3 class="widget-title">Categorias</h3>
+              <ul>
+                <li *ngFor="let category of categorias">
+                  <a class="pointer" (click)="goToCategory(category.id)">{{category.name}}
+                    <span class="count">({{category.products}})</span>
+                  </a>
+                </li>
+                <!--<li>
+                  <a href="#!">Tables <span class="count">(7)</span></a>
+                  <ul class="children">
+                    <li>
+                      <a href="#!">Side Tables <span class="count">(2)</span></a>
+                    </li>
+                    <li>
+                      <a href="#!">Lunch Tables <span class="count">(5)</span></a>
+                    </li>
+                  </ul>
+                </li>-->
+              </ul>
+            </div>
+            <!-- /.widget-categories -->
+
+            <!--<div class="widget widget-top-seller">
+              <h3 class="widget-title">Top Seller</h3>
+              <ul>
+                <li class="clearfix">
+                  <div class="media">
+                    <div class="media-left pull-left">
+                      <a href="#">
+										    <img class="media-object img-responsive" src="/assets/build/img/products/12.jpg">
+									    </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href="product.html">Twill Silk Scarf</a></h4>
+                      <div class="rating">
+                        <div class="star-rating">
+                          <span style="width:100%"></span>
+                        </div>
+                      </div>
+                      <p class="price">
+                        <ins>
+                          <span class="amount">$90.00</span>
+                        </ins>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="clearfix">
+                  <div class="media">
+                    <div class="media-left pull-left">
+                      <a href="#">
+										            <img class="media-object img-responsive" src="/assets/build/img/products/23.jpg">
+										        </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading"><a href="product.html">Glasses Patterned</a></h4>
+                      <div class="rating">
+                        <div class="star-rating">
+                          <span style="width:99%">
+													</span></div>
+                      </div>
+                      <p class="price">
+                        <del>
+                          <span class="amount">$25.00</span>
+                        </del>
+                        <ins>
+                          <span class="amount">$99.00</span>
+                        </ins>
+                      </p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>-->
+            <!-- /.widget-top-seller -->
+
+            <!--<div class="widget widget-instagram">
+              <h3 class="widget-title">Instagram</h3>
+              <ul class="row">
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/23.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/20.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/18.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/19.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/24.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+                <li class="col-xs-4">
+                  <a href="#!">
+											<img src="/assets/build/img/products/12.jpg" class="img-responsive" alt="">
+										</a>
+                </li>
+              </ul>
+            </div>-->
+            <!-- /.widget-instagram -->
+          </div>
+          <!-- /.widgets -->
+        </div>
+        <!-- /.shop-sidebar -->
+      </div>
+
+      <div class="col-md-9 custom-cargando" *ngIf="cargando">
+        <div class="cargando"></div>
+        Buscando productos...
+      </div>
+
+      <div class="col-md-9" *ngIf="!cargando">
+        <div class="masonry row" *ngIf="productos.length !== 0">
+          <products-product *ngFor="let product of productos | paginate: { itemsPerPage: 9, currentPage: p }" [product]="product"></products-product>
+          <!-- /.masonry -->
+        </div>
+        <div class="masonry row" *ngIf="productos.length !== 0">
+          <div class="clearfix text-center">
+            <pagination-controls class="custom" previousLabel="" nextLabel="" (pageChange)="changePag($event)"></pagination-controls>
+          </div>
+        </div>
+        <div class="masonry row" *ngIf="productos.length === 0">
+          <!-- /.masonry -->
+          <div class="clearfix text-center">
+            <div class="btn btn-default">No se encontraron productos.</div>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </div>
+</section>

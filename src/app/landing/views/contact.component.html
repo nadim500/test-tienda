@@ -1,0 +1,82 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li class="active">Contactenos</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="page-wrapper" *ngIf="contacto">
+  <section class="section no-padding-bottom" id="contact-map">
+    <div class="container">
+      <div class="row">
+        <div class="map-wrapper col-sm-12">
+          <iframe [src]="contacto.mapa | safe" height="450" frameborder="0" style="border:0; width: 100%;" allowfullscreen></iframe>
+        </div>
+        <!-- /.map-wrapper -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+
+  <section class="section" id="contact-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3 class="no-margin-top">{{contacto.title}}</h3>
+          <!-- <h3 class="no-margin-top">¿Porqué no decir <span class="autotype">Hola</span><span class="typed-cursor">?</span></h3> -->
+          <p class="description">{{contacto.description}}</p>
+
+          <div>
+            <p><strong>Teléfono:</strong> {{contacto.phone}}</p>
+            <p><strong>Email:</strong> {{contacto.email}}</p>
+            <!--<p><strong>Address:</strong> Avcılar NO:9 DAİRE :2, Istanbul, Turkey</p>-->
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="success-create typed-cursor" *ngIf="visible">Se envió su correo con exito. Nos comunicaremos a la brevedad.</div>
+          <div class="error-create typed-cursor" *ngIf="visibleError">Tenemos problemas en el servidor, intentelo otra vez.</div>
+          <form [formGroup]="formCreate" (ngSubmit)="submit()" class="inputs-border">
+            <div class="form-group">
+              <div class="required">
+                <input type="text" class="form-control" [ngClass]="{'error-custom-input': (name.hasError('required')) && name.touched }"
+                  [formControl]="name" placeholder="Nombres">
+                <div class="error-custom" *ngIf="name.hasError('required') && name.touched">*Este campo es requerido</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="required">
+                <input type="email" class="form-control" [ngClass]="{'error-custom-input': (email.hasError('required')) && email.touched }"
+                  [formControl]="email" placeholder="Email">
+                <div class="error-custom" *ngIf="email.hasError('required') && email.touched">*Este campo es requerido</div>
+                <div class="error-custom" *ngIf="email.hasError('invalidEmail') && email.touched">*El correo es inválido</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="required">
+                <textarea class="form-control" [ngClass]="{'error-custom-input': (message.hasError('required')) && message.touched }" [formControl]="message"
+                  placeholder="Mensaje"></textarea>
+                <div class="error-custom" *ngIf="message.hasError('required') && message.touched">*Este campo es requerido</div>
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button type="submit" [disabled]="!formCreate.valid" class="btn btn-default">Send Message</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+</div>
+<!-- /.page-wrapper -->

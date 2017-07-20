@@ -1,0 +1,266 @@
+<div class="nav-container navbar-fixed-top nav-sticky">
+  <nav class="sub-navbar">
+    <!--<div class="list-select">
+      <div class="inner-select">
+        <div class="selected">EN</div>
+        <ul>
+          <li><a href="#!">EN</a></li>
+          <li><a href="#!">AR</a></li>
+          <li><a href="#!">TR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="list-select">
+      <div class="inner-select">
+        <div class="selected"><i class="lil-dollar"></i></div>
+        <ul>
+          <li><a href="#!"><i class="lil-dollar"></i></a></li>
+          <li><a href="#!"><i class="lil-gbp"></i></a></li>
+          <li><a href="#!"><i class="lil-try"></i></a></li>
+        </ul>
+      </div>
+    </div>-->
+
+    <ul class="pull-right list-inline">
+      <li *ngIf="!client">
+        <a routerLink="/login">Ingresar</a>
+      </li>
+      <li *ngIf="client">
+        <a class="pointer" (click)="logout()">Cerrar sessión</a>
+      </li>
+      <li>
+        <a routerLink="/cart" (click)="scroll()">Mi carrito de compras</a>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <!-- /.sub-navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+          aria-controls="navbar">
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+        <a class="navbar-brand" href="index.html">
+			    <img src="/assets/build/img/logo.svg" alt="Sham Theme">
+			  </a>
+      </div>
+      <ul class="navbar-nav navbar-icons">
+        <li class="shopping-cart">
+          <a href="#!" class="li-icon" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+			      <i class="lil-shopping_cart"></i>
+            <span class="badge">{{productosCart.length}}</span>
+			    </a>
+          <ul class="dropdown-menu">
+            <div class="dropdown-wrap scroll-cart" slim-scroll="√">
+              <li *ngFor="let cart of productosCart; let i = index">
+                <a class="pointer" (click)="goToProduct(i)">
+                  <img [src]="cart.images[0]" class="img-responsive product-img" alt="">
+                </a>
+                <div class="product-details">
+                  <p class="product-title clearfix">
+                    <a class="pointer" (click)="goToProduct(i)">{{cart.name}}</a>
+                  </p>
+                  <p class="product-price clearfix">
+                    <ins>
+                      <span class="amount">S/{{cart.priceNow | fixedTwo}}</span>
+                    </ins>
+                  </p>
+                </div>
+              </li>
+            </div>
+            <li class="dropdown-footer">
+              <a routerLink="/cart" (click)="scroll()">Ver Carrito de Compras</a>
+            </li>
+          </ul>
+        </li>
+        <!-- <li style="visibility: hidden;"> -->
+        <!-- <li>
+          <a class="li-icon pointer" id="trigger-overlay" (click)="openSearch()">
+            <i class="lil-search"></i>
+          </a>
+        </li> -->
+      </ul>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+            <a routerLink="/" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false" (click)="scroll()">
+              Inicio
+              <!--<i class="caret"></i>-->
+            </a>
+            <!--<ul class="dropdown-menu">
+              <li class="active"><a href="index.html">Home Default</a></li>
+              <li><a href="index-2.html">Home Default Slider</a></li>
+              <li><a href="index-3.html">Home Overlay Products</a></li>
+              <li><a href="index-4.html#instagram">Home instagram section</a></li>
+            </ul>-->
+          </li>
+          <li routerLinkActive="active">
+            <a class="pointer" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+              Productos
+              <i class="caret"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li *ngFor="let category of categories">
+                <a class="pointer" (click)="goProducts(category.id)">{{category.name}}</a>
+              </li>
+            </ul>
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/conocenos" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false" (click)="scroll()">
+              Conócenos
+              <!--<i class="caret"></i>-->
+            </a>
+            <!--<ul class="dropdown-menu">
+              <li><a href="wishlist.html">Wishlist</a></li>
+              <li><a href="cart.html">Cart</a></li>
+              <li><a href="checkout.html">Checkout</a></li>
+              <li><a href="order-received.html">Order Received</a></li>
+              <li><a href="order-tracking.html">Order Tracking</a></li>
+            </ul>-->
+          </li>
+          <li routerLinkActive="active">
+            <a routerLink="/contacto" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false" (click)="scroll()">
+              Contáctenos
+              <!--<i class="caret"></i>-->
+            </a>
+            <!--<ul class="dropdown-menu">
+              <li><a href="page.html">Page Default</a></li>
+              <li><a href="login-register.html">Login / Register</a></li>
+              <li><a href="404.html">Not Found (404)</a></li>
+              <li><a href="faqs.html">FAQ'S</a></li>
+            </ul>-->
+          </li>
+          <!--<li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>-->
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container -->
+  </nav>
+</div>
+<!-- /.nav-container -->
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+    <div class="widgets">
+      <div class="row">
+        <div class="col-sm-4 widget widget-about">
+          <h3 class="widget-title">Sham</h3>
+          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy
+            text. Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum is simply dummy text
+            of the printing and typesetting industry.</p>
+        </div>
+        <!-- ./widget -->
+        <div class="col-sm-4 widget widget-links">
+          <h3 class="widget-title">ACERCA</h3>
+          <div class="row">
+            <ul class="col-xs-6">
+              <li><a routerLink="/" class="effect">Inicio</a></li>
+              <li><a routerLink="/cart" class="effect">Mi Carrito</a></li>
+            </ul>
+            <ul class="col-xs-6">
+              <li><a routerLink="/conocenos" class="effect">Conocenos</a></li>
+              <li><a routerLink="/contacto" class="effect">Contacto</a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- ./widget -->
+        <!-- <div class="col-sm-3 widget widget-instagram">
+          <h3 class="widget-title">Instagram</h3>
+          <ul class="row">
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/23.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/20.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/18.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/19.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/24.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+            <li class="col-xs-4">
+              <a href="#!">
+									<img src="/assets/build/img/products/12.jpg" class="img-responsive" alt="">
+								</a>
+            </li>
+          </ul>
+        </div> -->
+        <!-- /.widget -->
+        <div class="col-sm-4 widget widget-newsletter">
+          <h3 class="widget-title">SUSCRÍBASE A NUESTRO BOLETÍN</h3>
+          <div class="success-create typed-cursor" *ngIf="visible">Gracias por registrarse.</div>
+          <div class="error-create typed-cursor" *ngIf="visibleError">Su email ya se encuentra registrado.</div>
+          <form [formGroup]="formCreate" (ngSubmit)="submit()" class="inputs-border clearfix">
+            <div class="form-group">
+              <input type="email" class="form-control" [ngClass]="{'error-custom-input': (email.hasError('required') || email.hasError('invalidEmail') || email.hasError('invalidAsync')) && email.touched }"
+                [formControl]="email" placeholder="Tu Correo">
+              <div class="error-custom" *ngIf="email.hasError('required') && email.touched">*Este campo es requerido</div>
+              <div class="error-custom" *ngIf="email.hasError('invalidEmail') && email.touched">*El correo es inválido</div>
+              <button type="submit" class="btn btn-primary"><i class="lil-long-arrow-right"></i></button>
+            </div>
+          </form>
+          <!-- <ul class="social">
+            <li><a href="#!" target="_blank"><i class="lil-facebook"></i></a></li>
+            <li><a href="#!" target="_blank"><i class="lil-twitter"></i></a></li>
+            <li><a href="#!" target="_blank"><i class="lil-instagram"></i></a></li>
+            <li><a href="#!" target="_blank"><i class="lil-dribbble"></i></a></li>
+          </ul> -->
+        </div>
+        <!-- ./widget -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.widgets -->
+  </div>
+  <!-- /.container -->
+  <div class="copy-right text-center">
+    <p>© Copyright 2017. Todos los derechos reservados. Creado por <a href="https://www.niux.pe" class="effect" target="_blanck">NIUX</a></p>
+  </div>
+</footer>
+<!-- /.footer -->
+
+<!-- open/close -->
+<div class="overlay overlay-simplegenie" [class.open]="search">
+  <i class="overlay-close lil-close" (click)="openSearch()"></i>
+  <div class="container heigth-flex">
+    <div class="row text-center pos-r center-flex">
+      <div class="col-md-7 col-xs-11 col-center col-height-center search-form">
+        <div class="inputs-bg" id="searchform">
+          <strong>Escribe una palabra que deseas buscar y presiona enter.</strong>
+          <input type="text" name="q" class="form-control" placeholder="Buscar..">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.overlay -->
+
+<!-- Go to top -->
+<a class="go-to-top pointer" [class.visible]="top" (click)="goTop()">
+  <i class="lil-angle-double-down"></i>
+</a>
+
+<!-- All Theme Scripts -->
+<!--<script type="text/javascript" src="/assets/build/js/min.js"></script>-->

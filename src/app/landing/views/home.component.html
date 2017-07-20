@@ -1,0 +1,210 @@
+<div class="swiper-slider">
+  <!-- Slider main container -->
+  <div class="swiper-container fullscreen">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper text-center" *ngIf="image">
+      <!-- Slides -->
+      <div class="swiper-slide imagen" *ngFor="let img of image.slider; let i = index" [class.active]="arr[i]" [ngStyle]="{'background-image' : ('url(' + img + ')') }">
+        <!--style="background-image: url(/assets/build/img/slides/01.jpg);"-->
+        <!--<div class="valign-wrapper fullscreen">
+          <div class="valign col-xs-offset-3" data-swiper-parallax="-100">
+          </div>
+        </div>-->
+      </div>
+      <!--<div class="swiper-slide imagen" [class.active]="b" style="background-image: url(/assets/build/img/slides/02.jpg);">
+        <div class="valign-wrapper fullscreen">
+          <div class="valign col-xs-offset-8" data-swiper-parallax="-100">
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide imagen" [class.active]="c" style="background-image: url(/assets/build/img/slides/03.jpg);">
+        <div class="valign-wrapper fullscreen">
+          <div class="valign col-xs-offset-5">
+          </div>
+        </div>
+      </div>-->
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination swiper-pagination-bullets" *ngIf="image" >
+      <span class="swiper-pagination-bullet pointer" *ngFor="let img of image.slider; let i = index"
+       (click)="change(i)" [class.active]="arr[i]"></span>
+      <!--<span class="swiper-pagination-bullet pointer" (click)="change('b')" [class.active]="b"></span>
+      <span class="swiper-pagination-bullet pointer" (click)="change('c')" [class.active]="c"></span>-->
+    </div>
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev" (click)="changeBut('prev')">
+      <i class="lil-chevron_left"></i>
+    </div>
+    <div class="swiper-button-next" (click)="changeBut('next')">
+      <i class="lil-chevron_right"></i>
+    </div>
+  </div>
+</div>
+<!-- /.swiper-slider -->
+
+<section class="section collections no-padding-bottom" id="home-collections" *ngIf="image">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 collection">
+        <a href="#!">
+						<img [src]="image.other[0]" class="img-responsive" alt="">
+					</a>
+      </div>
+      <!-- /.collection -->
+      <div class="col-sm-6">
+        <div class="row">
+          <div class="col-sm-6 collection">
+            <a href="#!">
+								<img [src]="image.other[1]" class="img-responsive" alt="">
+							</a>
+          </div>
+          <!-- /.collection -->
+          <div class="col-sm-6 collection">
+            <a href="#!">
+								<img [src]="image.other[2]" class="img-responsive" alt="">
+							</a>
+          </div>
+          <!-- /.collection -->
+          <div class="col-sm-12 collection">
+            <a href="#!">
+								<img [src]="image.other[3]" class="img-responsive" alt="">
+							</a>
+          </div>
+          <!-- /.collection -->
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.collections -->
+
+<section class="section promotions no-padding-bottom small-padding-top" id="promotions">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="promotion media">
+          <div class="media-left media-middle">
+            <i class="lil-local_atm"></i>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Con Devolución</h3>
+            <p>Si el producto no es de tu agrado, te devolvemos tu dinero.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="promotion media">
+          <div class="media-left media-middle">
+            <i class="lil-public"></i>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">En Todo el Mundo</h3>
+            <p>Enviamos tus productos donde te encuentres.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="promotion media">
+          <div class="media-left media-middle">
+            <i class="lil-local_shipping"></i>
+          </div>
+          <div class="media-body">
+            <h3 class="media-heading">Envio Gratis</h3>
+            <p>No cobramos por el envio, estes donde estes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.promotions -->
+
+<section class="section products second-style" id="home-products">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 section-title text-center">
+        <h3><i class="line"></i>Ultimos Productos<i class="line"></i></h3>
+        <p>Todo lo nuevo aquí.</p>
+      </div>
+      <div class="col-sm-12">
+        <div class="masonry row">
+          <home-product *ngFor="let product of productos" [product]="product"></home-product>
+        </div>
+        <!-- /.masonry -->
+      </div>
+      <!--<div class="col-sm-12 text-center">
+        <a href="#!" class="btn btn-default">Show More</a>
+      </div>-->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.products -->
+
+<!--<section class="section brands no-padding-top" id="brands">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="logos" class="logos">
+          <div class="logo-router">
+            <div class="logo-stage">
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/5.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/6.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/4.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/7.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/8.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/9.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/1.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/2.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+              <div class="logo-container">
+                <div class="item">
+                  <a href="#!"><img src="/assets/build/img/brands/3.png" class="img-responsive" alt=""></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>-->
+<!-- /#brands -->

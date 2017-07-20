@@ -1,0 +1,41 @@
+<div class="inner-product">
+  <!--<span class="onsale">Sale!</span>-->
+  <!--<span class="onsale new">New!</span>-->
+  <!--<span class="onsale hot">Hot!</span>-->
+  <div class="product-thumbnail">
+    <img [src]="product.images[0]" class="img-responsive" alt="">
+  </div>
+  <div class="product-details text-center">
+    <div class="product-btns">
+      <span data-toggle="tooltip" data-placement="top" title="Añadir al carrito">
+				<a class="li-icon add-to-cart pointer" [class.added]="inCart" (click)="addCart()">
+          <i class="lil-shopping_cart"></i>
+        </a>
+			</span>
+      <!--<span data-toggle="tooltip" data-placement="top" title="Add to Favorites">
+				<a href="#!" class="li-icon">
+          <i class="lil-favorite"></i>
+        </a>
+			</span>-->
+      <span data-toggle="tooltip" data-placement="top" title="Ver producto">
+				<a class="li-icon view-details pointer" (click)="goToProduct()">
+          <i class="lil-search"></i>
+        </a>
+			</span>
+    </div>
+  </div>
+</div>
+<h3 class="product-title text-trun" title="{{product.name}}">
+  <a class="pointer" (click)="goToProduct()">{{product.name}}</a>
+</h3>
+<div class="star-rating">
+  <span [style.width]="product.percent"></span>
+</div>
+<p class="product-price">
+  <ins>
+    <span class="amount" *ngIf="product.priceNow">S/{{product.priceNow | fixedTwo}}</span>
+  </ins>
+  <del>
+    <span class="amount" *ngIf="product.priceOld">S/{{product.priceOld | fixedTwo}}</span>
+  </del>
+</p>

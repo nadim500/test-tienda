@@ -1,0 +1,60 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Home</a></li>
+          <li class="active">Ingresar</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="page-wrapper">
+  <section class="section" id="page-login">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3">
+          <div class="box">
+            <h2>Ingresar</h2><br>
+            <div class="error-create typed-cursor" *ngIf="visible" >{{textError}}</div>
+            <form [formGroup]="formCreate" (ngSubmit)="submit()" class="login-form inputs-border inputs-bg">
+              <div class="form-group">
+                <div class="required">
+                  <input type="text" class="form-control" [ngClass]="{'error-custom-input': (email.hasError('required')) && email.touched }"
+                    [formControl]="email" placeholder="Username o correo electrónico">
+                  <div class="error-custom" *ngIf="email.hasError('required') && email.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="required">
+                  <input type="password" class="form-control" [ngClass]="{'error-custom-input': (password.hasError('required')) && password.touched }"
+                    [formControl]="password" placeholder="Contraseña">
+                  <div class="error-custom" *ngIf="password.hasError('required') && password.touched">*Este campo es requerido</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="checkbox" id="rememberme">
+                <label for="rememberme" class="checkbox" style="visibility: hidden;">Remember me</label>
+                <a routerLink="/register" class="effect pull-right">No tienes cuenta, registrate</a>
+              </div>
+              <div class="form-group text-right">
+                <button type="submit" [disabled]="!formCreate.valid" class="btn btn-default">Ingresar</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.box -->
+        </div>
+
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-login -->
+</div>
+<!-- /.page-wrapper -->

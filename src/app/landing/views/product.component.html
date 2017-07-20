@@ -1,0 +1,343 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li><a class="pointer">Productos</a></li>
+          <li class="active" *ngIf="product">{{product.name}}</li>
+        </ol>
+      </div>
+
+      <!--<div class="col-md-4 col-sm-5 header-nav text-right">
+        <a rel="previous" href="#!"><i class="lil-angle-left"></i> Previous</a>
+        <a rel="next" href="#!">Next <i class="lil-angle-right"></i></a>
+      </div>-->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<section class="section single-product-wrapper" *ngIf="product">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-5">
+        <div class="product-images">
+          <div class="product-thumbnail">
+            <a class="fancybox pointer" rel="gallery" (click)="openImg(0)">
+								<img [src]="product.images[0]" class="img-responsive">
+							</a>
+          </div>
+          <div class="product-images-carousel">
+            <div class="row">
+              <div class="col-xs-3 padding-5" *ngFor="let img of buffImages; let i = index">
+                <div class="item">
+                  <a class="fancybox pointer" (click)="openImg(i+1)" rel="gallery">
+									  <img [src]="img" class="img-responsive">
+								  </a>
+                </div>
+              </div>
+            </div>
+            <!--<div class="item">
+              <a href="/assets/build/img/products/1.jpg" class="fancybox" rel="gallery">
+									<img src="/assets/build/img/products/1.jpg" class="img-responsive">
+								</a>
+            </div>
+            <div class="item">
+              <a href="/assets/build/img/products/19.jpg" class="fancybox" rel="gallery">
+									<img src="/assets/build/img/products/19.jpg" class="img-responsive" alt="">
+								</a>
+            </div>
+            <div class="item">
+              <a href="/assets/build/img/products/12.jpg" class="fancybox" rel="gallery">
+									<img src="/assets/build/img/products/12.jpg" class="img-responsive" alt="">
+								</a>
+            </div>
+            <div class="item">
+              <a href="/assets/build/img/products/3.jpg" class="fancybox" rel="gallery">
+									<img src="/assets/build/img/products/3.jpg" class="img-responsive">
+								</a>
+            </div>
+            <div class="item">
+              <a href="/assets/build/img/products/18.jpg" class="fancybox" rel="gallery">
+									<img src="/assets/build/img/products/18.jpg" class="img-responsive" alt="">
+								</a>
+            </div>-->
+          </div>
+        </div>
+        <!-- /.product-images -->
+      </div>
+
+      <div class="col-sm-6 col-sm-offset-1">
+        <div class="product-details">
+          <div class="rating">
+            <div class="star-rating">
+              <span [style.width]="product.percent"></span>
+            </div>
+            <!--<span class="rating-text">3 Reviews</span>-->
+            <span class="pull-right">SKU: <span>29039</span></span>
+          </div>
+
+          <div class="product-title">
+            <h3 class="product-name">{{product.name}}</h3>
+            <p class="product-available">En Stock / Envio Disponible</p>
+            <hr>
+          </div>
+
+          <div class="description">
+            <p *ngFor="let des of product.description" >{{des.text}}</p>
+          </div>
+
+          <p class="price">
+            <del>
+              <span class="amount" *ngIf="product.priceOld">S/{{product.priceOld | fixedTwo}}</span>
+            </del>
+            <ins>
+              <span class="amount" *ngIf="product.priceNow">S/{{product.priceNow | fixedTwo}}</span>
+            </ins>
+          </p>
+
+          <div action="#!" method="POST" class="inputs-border">
+            <!--<div class="product-attributes row">
+              <div class="form-group col-md-6">
+                <label for="attr_1">Size</label>
+                <select class="form-control" id="attr_1">
+										<option selected>Choose an option</option>
+										<option>Extra Small</option>
+										<option>Small</option>
+										<option>Medium</option>
+										<option>Large</option>
+									</select>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="attr_2">Color</label>
+                <select class="form-control" id="attr_2">
+										<option selected>Choose an option</option>
+										<option>Red</option>
+										<option>Blue</option>
+										<option>Green</option>
+										<option>Yellow</option>
+									</select>
+              </div>
+            </div>-->
+
+            <div class="form-group">
+              <!--<div class="quantity">
+                <input type="button" value="+" class="plus">
+                <input type="number" step="1" max="5" min="1" value="1" title="Qty" class="qty" size="4">
+                <input type="button" value="-" class="minus">
+              </div>-->
+
+              <button type="button" class="btn" [ngClass]="{'btn-default': !inCart ,'btn-ready': inCart }" (click)="addCart()">
+                <i [ngClass]="{'lil-add_shopping_cart': !inCart ,'lil-added': inCart }"></i> {{!inCart ? 'Añadir al carrito' : 'Producto añadido' }}
+              </button>
+            </div>
+          </div>
+
+          <div class="product-share">
+            <span>Comparte en</span>
+            <ul class="social">
+              <li><a class="pointer" [shareButton]="'facebook'"><i class="lil-facebook"></i></a></li>
+              <li><a class="pointer" [shareButton]="'twitter'"><i class="lil-twitter"></i></a></li>
+              <li><a class="pointer" [shareButton]="'googleplus'"><i class="lil-google-plus"></i></a></li>
+            </ul>
+          </div>
+        </div>
+        <!-- /.product-details -->
+      </div>
+
+      <!--<div class="col-sm-12">
+        <div class="tabs-wrapper">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active">
+              <a href="#tab-description" aria-controls="tab-description" data-toggle="tab">Description</a>
+            </li>
+            <li>
+              <a href="#tab-information" aria-controls="tab-information" data-toggle="tab">Additional Information</a>
+            </li>
+            <li>
+              <a href="#tab-reviews" aria-controls="tab-reviews" data-toggle="tab">Reviews (3)</a>
+            </li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab-description">
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard
+                dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+                dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.Lorem Ipsum
+                is simply dummy text of the printing and typesetting industry.</p>
+
+              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard
+                dummy text. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+                dummy text of the printing and typesetting industry.</p>
+            </div>
+            <div class="tab-pane" id="tab-information">
+              <table class="table shop_attributes">
+                <tbody>
+                  <tr>
+                    <th>Color</th>
+                    <td>
+                      <p>Red, Black, Yellow</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Materials</th>
+                    <td>
+                      <p>Wood</p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Dimensions</th>
+                    <td>
+                      <p>H:1.5″ x W: 2.75″ x D: 3.0″</p>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="tab-pane" id="tab-reviews">
+              <div class="row">
+                <div class="col-md-6 col-sm-12">
+                  <ol class="reviews">
+                    <li class="review">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <a href="#!">
+												            <img class="media-object avatar" src="/assets/build/img/users/1.jpg">
+												        </a>
+                        </div>
+                        <div class="media-body">
+                          <div class="rating pull-right">
+                            <div class="star-rating">
+                              <span style="width:90%"></span>
+                            </div>
+                          </div>
+                          <h4 class="media-heading">Hussam 3bd</h4>
+                          <time datetime="2016-06-07T11:44:50+00:00">June 7, 2016</time>
+                          <div class="description">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="review">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <a href="#!">
+												            <img class="media-object avatar" src="/assets/build/img/users/2.jpg">
+												        </a>
+                        </div>
+                        <div class="media-body">
+                          <div class="rating pull-right">
+                            <div class="star-rating">
+                              <span style="width:60%"></span>
+                            </div>
+                          </div>
+                          <h4 class="media-heading">Toyler</h4>
+                          <time datetime="2016-06-07T11:44:50+00:00">June 25, 2016</time>
+                          <div class="description">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="review">
+                      <div class="media">
+                        <div class="media-left media-middle">
+                          <a href="#!">
+												            <img class="media-object avatar" src="/assets/build/img/users/3.jpg">
+												        </a>
+                        </div>
+                        <div class="media-body">
+                          <div class="rating pull-right">
+                            <div class="star-rating">
+                              <span style="width:75%"></span>
+                            </div>
+                          </div>
+                          <h4 class="media-heading">Alex</h4>
+                          <time datetime="2016-06-07T11:44:50+00:00">Feb 10, 2016</time>
+                          <div class="description">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ol>
+                </div>
+                <div class="col-md-5 col-sm-12 col-md-offset-1 review-form-wrapper">
+                  <div action="#!" method="post" class="review-form">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Name*" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="email" class="form-control" placeholder="Email*" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="rating">Rating</label>
+                      <div class="rating-stars" data-rating="4"></div>
+                      <input type="hidden" name="rating" value="4" required>
+                    </div>
+                    <div class="form-group">
+                      <textarea class="form-control" placeholder="Your Review*" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-default">Leave Rating</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.products -->
+
+<!-- Related Products -->
+<section class="section related-products second-style no-padding-top" *ngIf="productos.length > 0">
+  <div class="container">
+    <!--<div class="section-title text-center">
+      <h3><i class="line"></i>Productos Relacionados<i class="line"></i></h3>
+    </div>-->
+    <div class="row">
+      <div class="col-sm-12 section-title text-center">
+        <h3><i class="line"></i>Productos Relacionados<i class="line"></i></h3>
+        <p>Te puede interesar.</p>
+      </div>
+      <div class="col-sm-12">
+        <div class="masonry row">
+          <home-product *ngFor="let product of productos" [product]="product"></home-product>
+        </div>
+        <!-- /.masonry -->
+      </div>
+      <!--<div class="col-sm-12 text-center">
+        <a href="#!" class="btn btn-default">Show More</a>
+      </div>-->
+    </div>
+  </div>
+  <!-- /.container -->
+</section>
+<!-- /.related-products -->
+
+<div class="content-images" *ngIf="product && viewImg">
+  <div class="content-image">
+    <div></div>
+    <div>
+      <div>
+        <img class="img-responsive" [src]="currentImg" alt="">
+      </div>
+      <div class="button-image anterior pointer" (click)="prev()"></div>
+      <div class="button-image siguiente pointer" (click)="next()"></div>
+      <div class="button-image cerrar pointer" (click)="closeImg()"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,175 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li class="active">Carrito de compras</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="page-wrapper">
+  <section class="section" id="page-cart">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="table-responsive">
+            <table class="table cart-table" cellspacing="0">
+              <thead>
+                <tr>
+                  <th class="product-remove">&nbsp;</th>
+                  <th class="product-thumbnail">&nbsp;</th>
+                  <th class="product-name">Producto</th>
+                  <th class="product-price">Precio</th>
+                  <th class="product-quantity">Cantidad</th>
+                  <th class="product-subtotal">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="item" *ngFor="let cart of cartProductos; let i = index">
+                  <td scope="row" class="product-remove">
+                    <a class="remove pointer" title="Remover este item" (click)="remove(i)">
+                      <i class="lil-close"></i>
+                    </a>
+                  </td>
+                  <td class="product-thumbnail">
+                    <a class="pointer" (click)="goToProduct(i)" >
+						          <img [src]="cart.images[0]" class="img-responsive" alt="">
+						        </a>
+                  </td>
+                  <td class="product-name">
+                    <a class="pointer" (click)="goToProduct(i)" >{{cart.name}}</a>
+                    <!--<table class="variation">
+                      <tbody>
+                        <tr>
+                          <th class="variation-size">Size:</th>
+                          <td class="variation-size">
+                            <p>Large</p>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="variation-color">Color:</th>
+                          <td class="variation-color">
+                            <p>Dark Grey</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>-->
+                  </td>
+                  <td class="product-price">
+                    <span class="amount">S/{{cart.priceNow | fixedTwo}}</span>
+                  </td>
+                  <td class="product-quantity">
+                    <div class="quantity">
+                      <input type="button" value="+" class="plus" (click)="plus(i)">
+                      <input type="number" step="1" max="5" min="1" [(ngModel)]="cart.cantidad" title="Qty" class="qty">
+                      <input type="button" value="-" class="minus" (click)="minus(i)">
+                    </div>
+                  </td>
+                  <td class="product-subtotal">
+                    <span class="amount">S/{{(cart.priceNow * cart.cantidad ) | fixedTwo}}</span>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td colspan="6" class="actions">
+                    <div class="coupon col-md-5 col-sm-5 no-padding-left">
+                      <div class="row">
+                        <!-- <div class="col-xs-6">
+                          <input type="text" class="form-control" placeholder="Coupon Code">
+                        </div>
+                        <div class="col-xs-6">
+                          <input type="submit" class="btn btn-default" value="Apply Coupon">
+                        </div> -->
+                      </div>
+                    </div>
+
+                    <div class="cart-collaterals col-md-5 col-sm-7 col-md-offset-2 no-padding-right">
+                      <div class="cart-totals">
+                        <h2>Total en el carrito</h2>
+                        <table class="table table-condensed" cellspacing="0">
+                          <tbody>
+                            <tr class="cart-subtotal">
+                              <th>Subtotal</th>
+                              <td class="text-right">
+                                <span class="amount">S/{{service.getTotal() | fixedTwo}}</span>
+                              </td>
+                            </tr>
+                            <tr class="shipping">
+                              <th>Envio</th>
+                              <td class="text-right">
+                                <span class="amount">Envio gratis</span>
+                              </td>
+                            </tr>
+                            <tr class="order-total">
+                              <th>Total</th>
+                              <td class="text-right">
+                                <strong>
+                                  <span class="amount">S/{{service.getTotal() | fixedTwo}}</span>
+                                </strong>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <div class="form-group clearfix">
+                          <!--<div class="pull-left">
+                            <input type="submit" class="btn btn-primary" value="Update Cart">
+                          </div>-->
+                          <div class="pull-right text-right">
+                            <a (click)="goCheckOut()" class="btn btn-default pointer">Pasar a caja</a>
+                          </div>
+                        </div>
+
+                        <!--<div class="text-right">
+                          <a href="#!" class="shipping-calculator-button effect" data-slide-toggle=".shipping-calculator-form">Calculate Shipping</a>
+                        </div>
+
+                        <div class="shipping-calculator-form inputs-border inputs-bg" style="display: none;">
+                          <div class="form-group">
+                            <select class="form-control">
+						                        				<option>Select a Country..</option>
+						                        				<option value="SY">Syria</option>
+						                        				<option value="UK">United Kingdom</option>
+						                        				<option value="US">United States</option>
+						                        				<option value="TR">Turkey</option>
+						                                    </select>
+                          </div>
+                          <div class="form-group">
+                            <select class="form-control">
+						                                        <option>Select an City..</option>
+						                                        <option value="SY">Syria</option>
+						                        				<option value="UK">United Kingdom</option>
+						                        				<option value="US">United States</option>
+						                        				<option value="TR">Turkey</option>
+						                                    </select>
+                          </div>
+                          <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Postcode / Zip">
+                          </div>
+                          <div class="form-group text-right">
+                            <button type="submit" class="btn btn-default">Update Totals</button>
+                          </div>
+                        </div>-->
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.table-responsive -->
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-cart -->
+</div>
+<!-- /.page-wrapper -->

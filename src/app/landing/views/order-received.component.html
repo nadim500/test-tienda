@@ -1,0 +1,110 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li><a class="pointer">Caja</a></li>
+          <li class="active">Pedido Recibido</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="page-wrapper" *ngIf="factura">
+  <section class="section" id="page-order-received">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="alert alert-success active">Gracias, tu pedido esta siendo procesado.</div>
+          <ul class="order-details">
+            <li class="order">
+              Número de pedido: <strong>{{factura.number}}</strong>
+            </li>
+            <li class="date">
+              Dia: <strong>{{factura.dateRegister | date}}</strong>
+            </li>
+            <li class="total">
+              Total: <strong><span class="amount">S/{{factura.total | fixedTwo}}</span></strong>
+            </li>
+            <li class="method">
+              Methodo de Pago: <strong>Contra Entrega</strong>
+            </li>
+          </ul>
+          <!-- /.order-details -->
+
+          <!--<p>Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>-->
+          <div class="box table-responsive">
+            <h3 class="title">Detalles del Pedido</h3>
+            <table class="table cart-table order-details-table">
+              <thead>
+                <tr>
+                  <th class="product-name">Producto</th>
+                  <th class="product-total">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="item" *ngFor="let cart of factura.productos; let i = index">
+                  <td class="product-name">
+                    <a (click)="goToProduct(i)" class="pointer">{{cart.name}}</a> <strong class="product-quantity">× {{cart.cantidad}}</strong>
+                  </td>
+                  <td class="product-total">
+                    <span class="amount">S/{{cart.total | fixedTwo}}</span>
+                  </td>
+                </tr>
+                <!--<tr class="item">
+                  <td class="product-name">
+                    <a href="product.html">Bag Maroon</a> <strong class="product-quantity">× 1</strong>
+                    <table class="variation">
+                      <tbody>
+                        <tr>
+                          <th class="variation-size">Size:</th>
+                          <td class="variation-size">
+                            <p>Large</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td class="product-total">
+                    <span class="amount">$450.00</span>
+                  </td>
+                </tr>-->
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th scope="row">Subtotal:</th>
+                  <td><span class="amount">S/{{factura.total | fixedTwo}}</span></td>
+                </tr>
+                <tr>
+                  <th scope="row">Envio:</th>
+                  <td>Envio gratis</td>
+                </tr>
+                <tr>
+                  <th scope="row">Metodo de Pago:</th>
+                  <td>Contra Entrega</td>
+                </tr>
+                <tr>
+                  <th scope="row">Total:</th>
+                  <td><span class="amount">S/{{factura.total | fixedTwo}}</span></td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <!-- /.box -->
+          <div class="text-right">
+            <a routerLink="/" (click)="scroll()" class="btn btn-default">Ir al inicio</a>
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-order-received -->
+</div>
+<!-- /.page-wrapper -->

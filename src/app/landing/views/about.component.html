@@ -1,0 +1,158 @@
+<div class="page-head content-top-margin">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-7">
+        <ol class="breadcrumb">
+          <li><a routerLink="/">Inicio</a></li>
+          <li class="active">Conócenos</li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container -->
+</div>
+<!-- /.page-head -->
+
+<div class="page-wrapper">
+  <section class="section" id="page-about">
+    <div class="container">
+      <div class="row">
+        <div class="block clearfix" *ngFor="let item of items; let i = index">
+          <div [ngClass]="{'col-sm-4': ( (i%2)==0 )}" *ngIf="(i%2)==0" >
+            <h2 class="title">{{item.title}}</h2>
+            <p *ngFor="let des of item.description" class="subtitle description">{{des.text}}</p>
+          </div>
+          <div [ngClass]="{'col-sm-8': ( (i%2) == 0 )}" *ngIf="(i%2)==0">
+            <div class="image">
+              <img [src]="item.urlImage" class="img-responsive">
+               <div class="caption">
+                <span>Nuestra</span>
+                <span>Oficina</span>
+              </div>
+            </div>
+          </div>
+          <div [ngClass]="{'col-sm-8': ( (i%2) == 1 )}" *ngIf="(i%2)==1">
+            <div class="image">
+              <img [src]="item.urlImage" class="img-responsive">
+              <div class="caption">
+                <span>Misión</span>
+              </div>
+            </div>
+          </div>
+          <div [ngClass]="{'col-sm-4': ( (i%2)==1 )}" *ngIf="(i%2)==1">
+            <h2 class="title">{{item.title}}</h2>
+            <p *ngFor="let des of item.description" class="subtitle description">{{des.text}}</p>
+          </div>
+        </div>
+        <!-- <div class="block clearfix">
+          <div class="col-sm-4">
+            <h2 class="title">Nosotros creamos productos para todos los estandares.</h2>
+            <p class="subtitle description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <p class="subtitle description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+          </div>
+          <div class="col-sm-8">
+            <div class="image">
+              <img src="/assets/build/img/about-1.jpg" class="img-responsive">
+              <div class="caption">
+                <span>Nuestra</span>
+                <span>Oficina</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="block clearfix">
+          <div class="col-sm-8">
+            <div class="image">
+              <img src="/assets/build/img/about-2.jpg" class="img-responsive">
+              <div class="caption">
+                <span>Misión</span>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <h2 class="title">Hacer que destaque tu producto.</h2>
+            <p class="subtitle description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+            <p class="subtitle description">
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the standard dummy text.
+              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+            </p>
+          </div>
+        </div> -->
+        <!-- /.block -->
+      </div>
+      <!-- /.row -->
+
+      <!--<div class="block clearfix">
+        <div class="col-sm-12 section-title text-center">
+          <h3><i class="line"></i>Meet our Team<i class="line"></i></h3>
+        </div>
+
+        <div id="our-team">
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="author">
+                <img src="/assets/build/img/users/8.jpg">
+                <h3>Hussam</h3>
+                <p>Web Developer</p>
+                <ul class="social">
+                  <li><a href="https://twitter.com/Hussam3bd" target="_blank"><i class="lil-twitter"></i></a></li>
+                  <li><a href="https://instagram.com/Hussam3bd" target="_blank"><i class="lil-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="author">
+                <img src="/assets/build/img/users/7.jpg">
+                <h3>Toyler</h3>
+                <p>Product Designer</p>
+                <ul class="social">
+                  <li><a href="#!" target="_blank"><i class="lil-twitter"></i></a></li>
+                  <li><a href="#!" target="_blank"><i class="lil-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="author">
+                <img src="/assets/build/img/users/5.jpg">
+                <h3>Kevin</h3>
+                <p>Creative Director</p>
+                <ul class="social">
+                  <li><a href="#!" target="_blank"><i class="lil-twitter"></i></a></li>
+                  <li><a href="#!" target="_blank"><i class="lil-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="author">
+                <img src="/assets/build/img/users/6.jpg">
+                <h3>Alex</h3>
+                <p>Web Designer</p>
+                <ul class="social">
+                  <li><a href="#!" target="_blank"><i class="lil-twitter"></i></a></li>
+                  <li><a href="#!" target="_blank"><i class="lil-instagram"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>-->
+      <!-- /.block -->
+    </div>
+    <!-- /.container -->
+  </section>
+  <!-- #page-about -->
+</div>
+<!-- /.page-wrapper -->
